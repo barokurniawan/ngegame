@@ -6,7 +6,7 @@
   "scripts": {
     "build": "rm -rf ./public/src/* && npx tsc",
     "start": "node -r dotenv/config dist/app.js",
-    "dev": "nodemon -r dotenv/config src/app.ts"
+    "dev": "rm -rf ./public/src/* && npx tsc -w"
   },
   "keywords": [],
   "author": "",
