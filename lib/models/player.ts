@@ -50,11 +50,10 @@ export default class Player {
 
     jump() {
         this.jumpSpeed = -4;
-        console.log("jumpSpeed 1: ", this.jumpSpeed);
     }
 
     setState(stateId: number) {
-        console.log("this.states[stateId]: ", this.states[stateId]);
+        console.log("active state: ", this.states[stateId]);
         this.currentState = this.states[stateId];
         this.currentState.enter();
     }

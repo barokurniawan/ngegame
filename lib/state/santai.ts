@@ -37,20 +37,14 @@ export class Santai extends State {
     handleInput(input: string) {
         if(input == "ArrowUp") {
             this.player.setState(States.LOMPAT);
-            console.log("States.LOMPAT: ", States.LOMPAT);
-            console.log(this.player);
         }
 
         if(input == "ArrowRight") {
             this.player.setState(States.JALANKAKI);
-            console.log("States.JALANKAKI: ", States.JALANKAKI);
-            console.log(this.player);
         }
 
         if(input == "ArrowLeft") {
             this.player.setState(States.JALANKAKIBALIK);
-            console.log("States.JALANKAKIBALIK: ", States.JALANKAKIBALIK);
-            console.log(this.player);
         }
     }
 }

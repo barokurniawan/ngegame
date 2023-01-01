@@ -34,20 +34,14 @@ export class JalanKaki extends State {
     handleInput(input: string) {
         if(input == "ArrowUp") {
             this.player.setState(States.LOMPAT);
-            console.log("States.LOMPAT: ", States.LOMPAT);
-            console.log(this.player);
         }
 
         if(input == "ArrowDown") {
             this.player.setState(States.SANTAI);
-            console.log("States.SANTAI: ", States.SANTAI);
-            console.log(this.player);
         }
 
         if(input == "ArrowLeft") {
             this.player.setState(States.JALANKAKIBALIK);
-            console.log("States.JALANKAKIBALIK: ", States.JALANKAKIBALIK);
-            console.log(this.player);
         }
     }
 }
