@@ -12,23 +12,22 @@ export class JalanKaki extends State {
 
     async enter() {
         const timer = (ms: number) => new Promise(res => setTimeout(res, ms));
-        var iFrame = 2;
-        var lFrames = [1, 2, 3, 4, 5, 6];
+        const iFrame = 2;
+        const lFrames = [1, 2, 3, 4, 5, 6];
         this.player.frameY = iFrame;
 
         this.player.speed = this.player.maxSpeed;
-        for (var index = 0; index < lFrames.length; index++) {
+        let index = 0;
+        while (this.player.currentState.state == this.state) {
+            if(index >= lFrames.length) {
+                index = 0;
+            }
+
             const element = lFrames[index];
             this.player.frameX = element;
 
             await timer(150);
-            if(this.player.currentState.state != "JALANKAKI") {
-                break;
-            }
-
-            if(index == (lFrames.length - 1)) {
-                index = 0;
-            }
+            index++;
         }
     }
 

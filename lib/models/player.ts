@@ -4,12 +4,13 @@ import { JalanKaki } from "../state/jalan_kaki.js";
 import { JalanKakiBalik } from "../state/jalan_kaki_balik.js";
 import { Lompat } from "../state/lompat.js";
 import { Santai } from "../state/santai.js";
+import { State } from "../state/state.js";
 
 export default class Player {
     gameHeight: number;
     gameWidth: number;
     states: any[];
-    currentState: any;
+    currentState!: State;
     height: number;
     width: number;
     image: CanvasImageSource;
@@ -22,26 +23,21 @@ export default class Player {
     jumpSpeed: number;
 
     constructor(gameHeight: number, gameWidth: number) {
+        this.image = document.getElementById("playerImg") as CanvasImageSource;
         this.gameHeight = gameHeight;
         this.gameWidth = gameWidth;
-
-        this.states = [new Santai(this), new Lompat(this), new JalanKaki(this), new JalanKakiBalik(this)];
-        this.currentState = this.states[0];
-
         this.height = 120;
         this.width = 65;
-
-        this.image = document.getElementById("playerImg") as CanvasImageSource;
-
         this.x = (this.gameWidth / 2) - (this.width / 2);
         this.y = this.gameHeight - this.height;
-
-        this.frameY = 1;
-        this.frameX = 1;
-
+        this.frameY = 0;
+        this.frameX = 0;
         this.speed = 0;
-        this.maxSpeed = 4;
         this.jumpSpeed = 0;
+        this.maxSpeed = 4;
+        this.states = [new Santai(this), new Lompat(this), new JalanKaki(this), new JalanKakiBalik(this)];
+
+        this.setState(States.SANTAI);
     }
 
     isOnTheGround() {
@@ -69,11 +65,13 @@ export default class Player {
         this.y = this.y + (this.jumpSpeed);
 
         if (this.x < 0 && this.currentState.state != "SANTAI") {
+            input.reset();
             this.x = 0;
             this.setState(States.SANTAI);
         }
 
         if (this.x > (this.gameWidth - this.width) && this.currentState.state != "SANTAI") {
+            input.reset();
             this.x = this.gameWidth - this.width;
             this.setState(States.SANTAI);
         }

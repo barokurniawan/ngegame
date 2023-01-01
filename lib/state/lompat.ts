@@ -21,17 +21,5 @@ export class Lompat extends State {
         this.player.jump();
     }
 
-    handleInput(input: string) {
-        if(input == "ArrowRight") {
-            this.player.setState(States.SANTAI);
-            console.log("States.SANTAI: ", States.SANTAI);
-            console.log(this.player);
-        }
-
-        if(input == "ArrowDown") {
-            this.player.setState(States.SANTAI);
-            console.log("States.SANTAI: ", States.SANTAI);
-            console.log(this.player);
-        }
-    }
+    handleInput(input: string) {}
 }
