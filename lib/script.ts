@@ -20,8 +20,7 @@ document.addEventListener("DOMContentLoaded", function(){
     function animate() {
         context!.clearRect(0, 0, canvas.width, canvas.height);
 
-        console.log("input.lastKey: ", input.lastKey);
-        player.update(input.lastKey);
+        player.update(input);
         player.draw(context!);
 
         drawStatusText(context!, input);
