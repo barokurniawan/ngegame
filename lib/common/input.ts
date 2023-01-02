@@ -50,4 +50,8 @@ export default class InputHandler {
             }
         });
     }
+
+    reset() {
+        this.lastKey = "";
+    }
 }
