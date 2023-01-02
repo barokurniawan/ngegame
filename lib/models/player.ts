@@ -83,6 +83,11 @@ export default class Player {
             input.reset();
             this.setState(States.SANTAI);
         }
+
+        if(!this.isOnTheGround() && this.jumpSpeed == 0) {
+            input.reset();
+            this.jumpSpeed = 4;
+        }
     }
 
     draw(context: CanvasRenderingContext2D) {
