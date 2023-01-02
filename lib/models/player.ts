@@ -21,15 +21,17 @@ export default class Player {
     speed: number;
     maxSpeed: number;
     jumpSpeed: number;
+    areaBoundary: number;
 
     constructor(gameHeight: number, gameWidth: number) {
         this.image = document.getElementById("playerImg") as CanvasImageSource;
         this.gameHeight = gameHeight;
         this.gameWidth = gameWidth;
+        this.areaBoundary = 110;
         this.height = 120;
         this.width = 65;
-        this.x = (this.gameWidth / 2) - (this.width / 2);
-        this.y = this.gameHeight - this.height;
+        this.x = 10;
+        this.y = (this.gameHeight - this.height) - this.areaBoundary;
         this.frameY = 0;
         this.frameX = 0;
         this.speed = 0;
@@ -41,7 +43,7 @@ export default class Player {
     }
 
     isOnTheGround() {
-        return this.y >= (this.gameHeight - this.height);
+        return this.y >= (this.gameHeight - this.height) - this.areaBoundary;
     }
 
     canJump() {
@@ -58,7 +60,7 @@ export default class Player {
         this.currentState.enter();
     }
 
-    update(input: InputHandler) {       
+    update(input: InputHandler) {
         this.currentState.handleInput(input.lastKey);
         this.x += this.speed;
         this.y = this.y + (this.jumpSpeed);
@@ -75,11 +77,11 @@ export default class Player {
             this.setState(States.SANTAI);
         }
 
-        if (!this.isOnTheGround() && this.y <= this.gameHeight * 0.3) {
+        if (!this.isOnTheGround() && this.y <= this.gameHeight * 0.1) {
             this.jumpSpeed = 4;
         }
 
-        if(this.isOnTheGround() && this.jumpSpeed != 0) {
+        if (this.isOnTheGround() && this.jumpSpeed != 0) {
             input.reset();
             this.setState(States.SANTAI);
         }
